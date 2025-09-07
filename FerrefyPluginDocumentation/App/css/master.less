@@ -1,0 +1,1871 @@
+/**[[ Copyright Ferrefy ]]**/
+
+@import 'var.less';
+
+/*
+*
+*	Layout
+*
+*/
+
+* {
+    box-sizing: border-box;
+}
+
+ul,
+ol {
+    // Override padding that browser adds by default, to match closest app padding.
+    padding-left: @padding-column * 2;
+}
+
+hr {
+    width: 100%;
+}
+
+img {
+    // To ensure that ratio is kept, when setting both width and height properties on an img element.
+    height: auto;
+}
+
+.max-width-wrap {
+    margin: 0 auto;
+    max-width: @width-max-page-main;
+    width: 100%;
+    padding-left: @max-width-wrap-horizontal-padding;
+    padding-right: @max-width-wrap-horizontal-padding;
+}
+
+#header-top-wrap.max-width-wrap {
+    padding-left: @max-width-wrap-horizontal-padding-header-top;
+    padding-right: @max-width-wrap-horizontal-padding-header-top;
+}
+
+#header-bottom-wrap.max-width-wrap {
+    padding-left: @max-width-wrap-horizontal-padding-header-bottom;
+    padding-right: @max-width-wrap-horizontal-padding-header-bottom;
+}
+
+#footer-top-wrap.max-width-wrap,
+#footer-bottom-wrap.max-width-wrap {
+    padding-left: @max-width-wrap-horizontal-padding-footer;
+    padding-right: @max-width-wrap-horizontal-padding-footer;
+}
+
+
+.flex {
+    display: flex;
+}
+
+.flex-fill {
+    flex: 1;
+}
+
+.content-block {
+    margin-bottom: @padding-column * 6;
+}
+
+.banner-intro {
+    background-color: @color-black;
+    padding: @padding-column * 2 @padding-column;
+    filter: drop-shadow(0px 0px @padding-two-third @color-brand-1);
+}
+
+.banner-wrap {
+    position: relative;
+
+    .banner-img-wrap {
+        .banner-img-wide {
+            // match to video height. Fixes size jumping when video gets loaded.
+            height: 400px;
+        }
+
+        .banner-img-left,
+        .banner-img-right {
+            width: 50%;
+        }
+    }
+
+    .banner-overlay-left {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: @padding-column * 3;
+        background-image: linear-gradient(90deg, @color-black 0% 20%, rgba(0, 0, 0, 0) 100%);
+    }
+    .banner-overlay-right {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: @padding-column * 3;
+        background-image: linear-gradient(-90deg, @color-black 0% 20%, rgba(0, 0, 0, 0) 100%);
+    }
+    .banner-overlay-top {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        height: 5px;
+        background-image: linear-gradient(-180deg, @color-black 0% 20%, rgba(0, 0, 0, 0) 100%);
+    }
+    .banner-overlay-bottom {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 5px;
+        background-image: linear-gradient(0deg, @color-black 0% 20%, rgba(0, 0, 0, 0) 100%);
+    }
+}
+
+@media screen and (max-width: @screen-width-l) {
+    .banner-intro {
+        padding: 0px;
+        margin: 0px;
+
+        .max-width-wrap {
+            padding: 0px;
+            margin: 0px;
+        }
+    }
+
+    .banner-wrap {
+        .banner-img-wrap {
+            .banner-img-wide {
+                max-width: 150%;
+                width: 150%;
+                margin-left: -25%;
+                margin-right: -25%;
+            }
+
+            .banner-img-left,
+            .banner-img-right {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        .banner-overlay-left {
+            width: 5px;
+        }
+        .banner-overlay-right {
+            width: 5px;
+        }
+        .banner-overlay-top {
+            height: 5px;
+        }
+        .banner-overlay-bottom {
+            height: 5px;
+        }
+    }
+}
+
+.content-intro {
+    text-align: center;
+    padding: @padding-column * 4 @padding-column;
+    box-shadow: 0px 0px @padding-two-third 0px @color-black;
+    background-color: @color-brand-2-dark;
+    border-top: thin solid #4b0019;
+    border-bottom: thin solid #4b0019;
+}
+
+.content-detail {
+    padding-top: @padding-column * 3;
+    margin-top: @padding-column * 2;
+    margin-bottom: @padding-column * 3;
+}
+
+.content-detail-leftborder {
+    border-left: medium solid @color-brand-1-near-white;
+    padding-left: @padding-column;
+}
+
+// Content Separator (anchor links)
+
+.content-separator-wrap {
+    display: block;
+    width: @padding-column * 3;
+    margin: 0 auto;
+    padding-top: @padding-column * 2;
+
+    .content-separator {
+        height: 3px;
+        background-color: @color-brand-1-near-white;
+        border-radius: @border-radius-smallest;
+        position: relative;
+        margin-bottom: 30px;
+
+        .separator-icon {
+            transform: rotateZ(45deg);
+            background-color: @color-brand-1-near-white;
+            width: 14px;
+            height: 14px;
+            border-radius: @border-radius-small;
+            overflow: hidden;
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: auto;
+            top: -5px;
+
+            &:after {
+                content: "";
+                height: 10px;
+                width: 10px;
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                background-color: @color-brand-2-dark;
+            }
+        }
+    }
+
+    &:hover {
+        cursor: pointer;
+
+        .content-separator {
+            background-color: @color-brand-1-near-white;
+
+            .separator-icon {
+                top: @content-separator-hover-translate;
+                background-color: @color-brand-1-near-white;
+            }
+        }
+    }
+
+    &.content-separator-wrap-endmain {
+        .content-separator {
+            transform: rotateX(180deg);
+        }
+    }
+}
+
+// Global layout
+
+.generate-columns(@n: 12, @i: 1, @a: ~'') when (@i =< @n) {
+    .col-@{i}@{a} {
+        flex: 0 0 (@i * 100% / @n);
+        max-width: (@i * 100% / @n);
+    }
+
+    .generate-columns(@n, (@i + 1), @a);
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -@padding-column;
+    margin-right: -@padding-column;
+
+    .generate-columns();
+
+    [class*='col-'] {
+        padding-left: @padding-column;
+        padding-right: @padding-column;
+    }
+}
+
+@media screen and (max-width: @screen-width-l) {
+    .row {
+        .generate-columns(12, 1, -l);
+    }
+}
+
+@media screen and (max-width: @screen-width-m) {
+    .row {
+        .generate-columns(12, 1, -m);
+    }
+}
+
+@media screen and (max-width: @screen-width-s) {
+    .row {
+        .generate-columns(12, 1, -s);
+    }
+}
+
+@media screen and (max-width: @screen-width-less-than-main) {
+    .row {
+        .col-12-less-main {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+    }
+}
+
+
+/*
+*
+*	Default
+*
+*/
+
+* {
+    /* Sorted highest priority to lowest. System availability is checked per character of text. */
+    font-family: "Roboto", "Helvetica", "Verdana", "Arial", "Tahoma", "system-ui", "Georgia", sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+    // The header is fixed over scrollable content, so give the content scroll an offset if needed.
+    font-size: 14px;
+    scrollbar-color: @color-brand-1-near-white @color-brand-1;
+}
+
+body {
+    line-height: @line-height;
+    margin: 0;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    // prevents background moving when content on body is resized
+    background-attachment: fixed;
+
+    // set up default text color
+    color: @color-default-text;
+
+    a,
+    a:visited {
+        color: @color-default-text;
+    }
+}
+
+main {
+    display: flex;
+    flex: 1;
+    // minimal height of 100vh so that scrolling past the header banner is always possible.
+    // This is required for the mobile navigation menu to pop up on the right position and for it to use the entire height properly (among with the bottom header.).
+    min-height: 100vh;
+    // Guard against content pushing main horizontally beyond (usually extremely tiny) screens, which deforms space on navigation menu and header.
+    overflow: hidden;
+}
+
+/* format font size of texts, headers */
+
+body {
+    font-size: @font-size-default;
+
+    footer {
+        font-size: @font-size-footer;
+
+        #footer-copyright {
+            font-size: @font-size-footer-copyright;
+        }
+    }
+}
+
+h1 {
+    font-size: calc(@font-size-default * @scale-header * @scale-header * @scale-header * @scale-header);
+    margin-top: calc(@line-height * 1.5rem);
+}
+
+h2 {
+    font-size: calc(@font-size-default * @scale-header * @scale-header * @scale-header);
+    margin-top: calc(@line-height * 1.5rem);
+}
+
+h3 {
+    font-size: calc(@font-size-default * @scale-header * @scale-header);
+    margin-top: calc(@line-height * 1.5rem);
+}
+
+h4 {
+    font-size: calc(@font-size-default * @scale-header);
+    margin-top: calc(@line-height * 1.5rem);
+}
+
+h5 {
+    font-size: @font-size-default;
+    margin-top: calc(@line-height * 1.5rem);
+}
+
+h6 {
+    font-size: calc(@font-size-default / @scale-header);
+    margin-top: calc(@line-height * 1.5rem);
+}
+
+footer {
+    h6 {
+        font-size: calc(@font-size-footer-header / @scale-header);
+    }
+}
+
+/* Format links & buttons */
+
+a {
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+main {
+    a {
+        text-decoration: underline;
+        text-decoration-color: @color-brand-1-near-white-a7;
+    }    
+}
+
+/* Lists */
+
+img,
+video {
+    max-width: 100%;
+}
+
+footer {
+
+    a,
+    p {
+        font-size: @font-size-footer;
+    }
+
+    h6 {
+        font-size: @font-size-footer-header;
+    }
+}
+
+main {
+    flex-direction: column;
+}
+
+.main-bottom-fill {
+    padding-bottom: @padding-column * 6;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+}
+
+#header-top {
+    display: flex;
+    background-color: @color-brand-1;
+}
+
+#header-banner {
+    display: flex;
+}
+
+#banner-logo-wrap {
+    display: flex;
+    align-items: center;
+    padding: @padding-column;
+    max-width: 100%;
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    #banner-logo-left,
+    #banner-logo-right {
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: bottom left;
+    }
+
+    #banner-logo-left {
+        // match size to file size.
+        height: @header-banner-logo-left-height;
+        width: @header-banner-logo-left-width;
+    }
+
+    #banner-logo-right {
+        // match size to file size.
+        height: @header-banner-logo-right-height;
+        width: @header-banner-logo-right-width;
+    }
+}
+
+body {
+    // backgroundcolor Colors the scrollbar on firefox.
+    // Setting a dark default to avoid light color jumping.
+    background-color: @color-brand-2-dark;
+}
+
+body.page-documentation {
+    background-color: @color-brand-2-dark;
+}
+
+body.page-home {
+    background-color: @color-brand-2;
+}
+
+body.js-loaded-app {
+    #banner-logo-wrap {
+
+        #banner-logo-left,
+        #banner-logo-right {
+            opacity: 1;
+            // This is done on any page, even if not animated. it avoids a tiny position jump which somehow happens on firefox.
+            // transform: translateX(0px);
+        }
+    }
+}
+
+#header-bottom {
+    filter: drop-shadow(0px 0px 2px @color-brand-2-dark);
+    background-image: linear-gradient(@color-brand-2-dark 0% calc(100% - @header-bottom-bar-height), @color-brand-1 calc(100% - @header-bottom-bar-height));
+}
+
+#header-bottom-wrap {
+    display: flex;
+    // hardcoded height so that jumping on content can be avoided when css sets it to position fixed.
+    height: @header-bottom-height;
+}
+
+#header-logo-wrap {
+    display: flex;
+    margin-top: @padding-one-third;
+    margin-bottom: @padding-one-third + @header-bottom-bar-height;
+    width: 216px;
+    height: @header-bottom-height - @padding-one-third * 2 - @header-bottom-bar-height;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+body.has-banner-content {
+    &.scroll-past-header-top {
+        #header-logo-wrap {
+            // This is a secondary (duplicate) logo shown under the big top header.
+            // opacity 0 is inlined in html to avoid a 1 to 0 jump when css still loads.
+            opacity: 1 !important;
+        }
+    }
+}
+
+body.scroll-past-header-top #header-bottom {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+body.scroll-past-header-top main {
+    // hardcoded height so that jumping on content can be avoided when css sets it to position fixed.
+    margin-top: @header-bottom-height;
+}
+
+// Navigation menu
+
+#header-nav-menu {
+    display: flex;
+    flex: 1;
+    flex-direction: row-reverse;
+}
+
+#header-nav-menu-inner {
+    flex-direction: row;
+    align-items: center;
+    display: flex;
+    gap: @padding-one-third;
+}
+
+// navigation item / mobile navigation item
+
+#header-nav-menu {
+    .nav-item {
+        user-select: none;
+        cursor: pointer;
+        padding-left: @padding-column;
+        padding-right: @padding-column;
+        height: @header-bottom-height;
+        align-content: center;
+        border-bottom: @header-bottom-bar-height solid @color-transparent;
+
+        &:hover,
+        &.active {
+            text-decoration: none;
+            border-bottom: @header-bottom-bar-height solid @color-brand-1-near-white;
+            background-color: @color-brand-1-near-white-a25;
+        }
+    }
+}
+
+// mobile navigation overlay
+
+#navigation-overlay {
+    visibility: collapse;
+    background-color: @color-transparent;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+body.mobile-nav #navigation-overlay {
+    visibility: visible;
+    background-color: @color-navigation-overlay;
+}
+
+
+// navigation overlay icon
+
+#navigation-overlay-icon.content-separator-wrap {
+    opacity: 0;
+    transform: rotateZ(-90deg);
+    // hardcoding, just position it nicely next to the menu panel
+    position: absolute;
+    right: @mobile-nav-menu-inner-width + 25px + @padding-column * 2;
+
+    .content-separator {
+        margin-bottom: 0;
+        background-color: @color-brand-2-dark;
+
+        .separator-icon {
+            background-color: @color-brand-2-dark;
+
+            &:after {
+                background-color: @color-brand-1-near-white;
+            }
+        }
+    }
+}
+
+body.mobile-nav {
+    #navigation-overlay-icon.content-separator-wrap {
+        opacity: 1;
+
+        .content-separator {
+            background-color: @color-brand-1-near-white;
+
+            .separator-icon {
+                background-color: @color-brand-1-near-white;
+
+                &:after {
+                    background-color: @color-brand-2-dark;
+                }
+            }
+        }
+    }
+}
+
+body.mobile-nav {
+    #navigation-overlay:hover {
+        #navigation-overlay-icon.content-separator-wrap {
+            .content-separator {
+                .separator-icon {
+                    // move when the parent overlay is hovered just like the original does when hovered directly.
+                    top: @content-separator-hover-translate;
+                }
+            }
+        }
+    }
+}
+
+// Mobile navigation menu
+
+body.mobile-nav {
+    overflow: hidden !important;
+}
+
+#mobile-nav-menu {
+    visibility: collapse;
+    will-change: transform;
+    transform: translateX(100%);
+    display: flex;
+    padding: calc(@padding-column);
+    position: fixed;
+    // top: mobile menu is displayed over the header bar since it has its own close button. no functionality need to put it under the bar.
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: @color-brand-1;
+    padding: @padding-column;
+    padding-top: @padding-column * 2;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow: auto;
+
+    .nav-item {
+        border-bottom: medium solid @color-brand-1-near-white-a25;
+        transform: translatex(-30px);
+        opacity: 0;
+        border-radius: @border-radius-smallest;
+        user-select: none;
+        cursor: pointer;
+        margin: @padding-one-third @padding-one-third 0px @padding-column;
+        font-size: @font-size-mobile-nav;
+        text-align: left;
+        padding-bottom: @padding-two-third;
+
+        &:hover,
+        &.active {
+            border-bottom: medium solid @color-brand-1-near-white;
+            text-decoration: none;
+        }
+    }
+}
+
+#mobile-nav-menu-inner {
+    flex-direction: column;
+    display: flex;
+    flex: 1;
+    gap: @padding-column;
+    // to avoid menu from resizing use a width larger than a nav-item will ever be. Mind the position of the navigation-overlay-icon.
+    width: @mobile-nav-menu-inner-width;
+}
+
+body.mobile-nav {
+    #mobile-nav-menu {
+        transform: translateX(0%);
+
+        .nav-item {
+            transform: translatex(0px);
+            opacity: 1;
+        }
+    }
+}
+
+#mobile-menu-icon {
+    user-select: none;
+    opacity: 1;
+    display: none;
+    height: 25px;
+    border-radius: @border-radius-smallest;
+    align-self: center;
+    flex-direction: column;
+    gap: 8px;
+    // move up a bit cause the bottom of the header has a border visually
+    margin-top: calc(-@header-bottom-bar-height / 2);
+
+    .mobile-menu-icon-line {
+        background-color: @color-brand-1-near-white;
+        width: 25px;
+        display: block;
+        border-radius: @border-radius-normal;
+        flex: 1;
+    }
+
+    &:hover {
+        cursor: pointer;
+        opacity: 0.8;
+    }
+}
+
+@media screen and (max-width: @screen-width-mobile) {
+    #header-nav-menu-inner {
+        display: none;
+    }
+
+    body.mobile-nav #mobile-nav-menu {
+        visibility: visible;
+    }
+
+    #mobile-menu-icon {
+        display: flex;
+    }
+}
+
+// Footer
+
+footer {
+    background-color: @color-brand-2-dark;
+}
+
+#footer-top {
+    border-top: thin solid @color-brand-1-near-white-a25;
+}
+
+#footer-top-wrap {
+    padding: @padding-column * 2 @padding-column;
+
+    h6 {
+        margin: 0;
+    }
+
+    p,
+    a {
+        margin-top: @padding-one-third;
+        margin-bottom: @padding-one-third;
+    }
+
+    h6 {
+        width: 100px;
+        padding-bottom: @padding-one-third;
+        margin-bottom: @padding-two-third;
+        border-bottom: thin solid @color-brand-1-near-white-a25;
+    }
+
+    #footer-nav-menu-inner {
+        .nav-item {
+            &.active {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .footer-top-content-inner {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .contact-item {
+        display: flex;
+
+        .contact-left {
+            // alignment of text.
+            width: 50px;
+        }
+    }
+}
+
+#footer-bottom {
+    border-top: thin solid @color-brand-1-near-white-a25;
+}
+
+#footer-bottom-wrap {
+    padding: @padding-half-column @padding-column;
+}
+
+#footer-copyright {
+    margin: 0;
+    color: @color-footer-copyright;
+}
+
+@media screen and (max-width: @screen-width-mobile) {
+    #footer-top-wrap .footer-top-content-wrap {
+        width: 600px;
+        max-width: 100%;
+        margin: auto;
+        margin-bottom: @padding-column;
+        margin-top: @padding-column;
+    }
+}
+
+/*
+*
+*	Arrow icon
+*
+*/
+
+.arrow-icon {
+    transform: rotateZ(45deg);
+    background-color: @color-brand-1-near-white;
+    width: 14px;
+    height: 14px;
+    border: @color-brand-1-near-white;
+    border-radius: @border-radius-small;
+    overflow: hidden;
+    align-self: center;
+
+    &:after {
+        content: "";
+        height: 9px;
+        width: 9px;
+        background-color: @color-brand-2-dark;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+    }
+}
+
+/*
+*
+*	Compact - a compact block containing options (content) which can be unfolded.
+*
+*/
+
+.compact {
+    scroll-margin-top: @header-bottom-height + @compact-title-height + @padding-column * 2;
+
+    .compact-intro {
+        // Padding is used instead of margin to detect the correct position at which the compact title becomes fixed in JS.
+        padding-bottom: @padding-column * 2;
+
+        h1,
+        h2 {
+            margin: 0;
+            padding-top: @padding-column;
+            padding-bottom: @padding-column;
+        }
+    }
+
+    .parent-topic-navigation {
+        .arrow-icon {
+            margin-left: @padding-column;
+            transform: rotateZ(135deg);
+        }
+        > a {
+            text-decoration: none;
+            display: flex;
+            flex-direction: row;
+        }
+        p {
+            padding-left: @padding-column * 2;
+        }
+    }
+
+    .compact-option {
+        scroll-margin-top: @header-bottom-height + @compact-title-height + @padding-column * 2;
+
+        .compact-title {
+            display: flex;
+            border-radius: @border-radius-small;
+            width: 400px;
+            max-width: 100%;
+
+            .compact-title-wrap-2 {
+                display: flex;
+                flex: 1;
+                flex-direction: column;
+
+                > a {
+                    text-decoration: none;
+                }
+
+                .compact-title-wrap {
+                    border-radius: @border-radius-normal;
+                    display: flex;
+                    align-items: center;
+
+                    .compact-reading-wrap {
+                        display: flex;
+                        flex-direction: column;
+                        padding-left: @padding-column * 2;
+
+                        .compact-reading {
+                            display: none;
+                            margin: 0;
+                        }
+
+                        .compact-reading-title {
+                            flex: 1;
+                            margin: 0;
+                        }
+                    }
+                }
+
+                .compact-title-wrap {
+                    padding-top: @padding-two-third;
+                    padding-bottom: @padding-two-third;
+                    padding-left: @padding-column;
+                    padding-right: @padding-column;
+                    flex: 1;
+                }
+            }
+        }
+
+        &.compact-option-url {
+            a:hover {
+                text-decoration: none;
+            }
+        }
+
+        .compact-title:hover {
+            cursor: pointer;
+
+            .compact-title-wrap-2 {
+
+                .compact-title-wrap {
+                    background-color: @color-brand-1;
+                }
+            }
+        }
+
+        .compact-content {
+            scroll-margin-top: @compact-title-height;
+            max-height: 0px;
+            overflow: hidden;
+            background-color: @color-transparent;
+            border: medium solid @color-transparent;
+            border-top: none;
+            border-radius: @border-radius-small;
+            border-top-left-radius: 0px;
+            padding: 0px;
+
+            .compact-content-inner {
+                opacity: 0;
+                display: flex;
+                flex-direction: column;
+                // Some classes documented for programmers take up more width than tiny screens offer. Wrap these.
+                overflow-wrap: anywhere;
+            }
+
+            .plugin-requirement-info-parts {
+                margin-bottom: @padding-two-third;
+                
+                .plugin-requirement-info-part {
+                    display: inline-block;
+
+                    > * {
+                        display: inline-block;
+                    }
+
+                    p {
+                        margin: 0px;
+                    }
+
+                    .plugin-requirement-links-separator {
+                        margin-left: 15px;
+                        margin-right: 15px;
+                    }
+                }
+
+                .plugin-requirement-info-part:first-child {
+                    width: 200px;
+                    max-width: 100%;
+                }
+
+                .plugin-requirement-info-part-of-ue {
+                    color: @color-brand-1-near-white-a7;                    
+                }
+            }
+        }
+
+        .content-separator-wrap {
+            .content-separator {
+                margin-top: @padding-column * 2;
+            }
+        }
+
+        &.active {
+            // Just about 40px taller than .compact-content, this avoids external elements from being animated when compact-content changes in size.
+            // Allows for js to scroll to the final content position while content still animates.
+            margin-bottom: @padding-column * 4;
+            position: relative;
+
+            .compact-title {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: @compact-title-height;
+                width: auto;
+
+
+                .compact-title-wrap-2 {
+                    .compact-title-wrap {
+                        filter: drop-shadow(0px 0px 2px @color-brand-2-dark);
+                        background-color: @color-brand-1;
+                        padding-left: @padding-column * 3;
+                        padding-right: @padding-column * 3;
+                        // Looks nicer to fill the side edges so we need negative numbers that are paddings added from the outside.
+                        margin-left: -30px;
+                        margin-right: -30px;
+
+                        .arrow-icon {
+                            &:after {
+                                top: 6px;
+                                left: 6px;
+                            }
+                        }
+
+                        .compact-reading-wrap {
+                            .compact-reading {
+                                display: inline-block;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .compact-content {
+                // auto gave garbage scrollbar horizontal on row
+                // overflow: auto;
+                overflow: unset;
+                padding-top: @compact-title-height;
+                max-height: unset;
+
+                .compact-content-inner {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    &.active {
+        .compact-option:not(.active) {
+            display: none;
+        }
+    }
+
+    &.fixed-title {
+        .compact-option {
+            .compact-title {
+                position: fixed;
+                top: @header-bottom-height;
+                height: @compact-title-height;
+                transition: none;
+
+                .compact-title-wrap-2 {
+                    margin: 0 auto;
+                    max-width: @width-max-page-main;
+                    width: 100%;
+
+                    .compact-title-wrap {
+                        // Looks nicer to fill the side edges so we need negative numbers that are paddings added from the outside.
+                        padding-left: @padding-column * 3;
+                        padding-right: @padding-column * 3;
+                        margin-left: 0;
+                        margin-right: 0;
+                    }
+                }
+            }
+
+            .compact-content {}
+        }
+
+        &.at-footer {
+            .compact-title {
+                visibility: hidden;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: @screen-width-m) {
+    .compact {
+        .compact-option {
+            .compact-content {
+                .plugin-requirement-info-parts {
+                    .plugin-requirement-info-part:first-child {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/*
+*
+*	project-plugin-visual - shows the relation between plugin layer and project layer.
+*
+*/
+
+.project-plugin-visual-wrap {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    .project-plugin-visual {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+
+        .part-1 {
+            display: flex;
+            flex-direction: column;
+            gap: @padding-one-third;
+
+            .part-1-title {
+                padding: @padding-one-third 0px;
+                margin-top: @padding-column;
+            }
+        }
+
+        .part-1 {
+            width: 190px;
+        }
+
+        .part-2 {
+            margin: @padding-column * 2;
+        }
+
+        .part-node {
+            padding: @padding-half-column @padding-column;
+            border-radius: @border-radius-large;
+            border: thin solid @color-brand-1-near-white;
+            width: 100%;
+        }
+
+        h5 {
+            color: @color-brand-1-near-white;
+            max-width: 250px;
+            margin: 0px;
+            margin-bottom: @padding-column;
+            align-self: flex-start;
+
+            &.part-done {
+                margin: 0px;
+                margin-top: @padding-column;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: @screen-width-l) {
+    .project-plugin-visual-wrap {
+        .project-plugin-visual {
+            padding-top: 30px;
+        }
+    }
+}
+
+@media screen and (max-width: @screen-width-s) {
+    .project-plugin-visual-wrap {
+        .project-plugin-visual {
+            flex-direction: column;
+            padding-top: 30px;
+        }
+    }
+}
+
+/*
+*
+*	Documentation
+*
+*/
+
+.docs-summary-wrap {
+    padding: @padding-half-column;
+    margin-top: @padding-column * 2;
+    margin-bottom: @padding-column * 2;
+
+    .docs-summary-header {
+        margin: 0;
+    }
+
+    .docs-summary {
+        margin-top: @padding-column;
+        margin-bottom: @padding-column;
+        border-left: medium solid @color-brand-1;
+        padding-left: @padding-column * 2;
+
+        .summary-group-start {
+            list-style: none;
+            color: @color-brand-1-near-white;
+            border-left: 10px solid @color-brand-1;
+            padding-left: @padding-column;
+            margin-bottom: @padding-column;
+            margin-left: -@padding-column * 2;
+            margin-top: @padding-column;
+        }
+
+        .summary-item {
+            padding-left: 5px;
+            margin-bottom: 5px;
+            a {
+                text-decoration: none;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: @screen-width-m) {
+    .docs-summary-wrap {
+        .docs-summary {
+            .summary-item {
+                // With multi line item texts it is easier to read / tap items with some space in between them.
+                margin-bottom: 15px;
+            }
+        }
+    }
+}
+
+.docs-section {
+    scroll-margin-top: @header-bottom-height + @compact-title-height + @padding-column * 2;
+    margin-bottom: @padding-column;
+    margin-top: @padding-column;
+
+    .codeclass {
+        color: @color-brand-1-near-white-a7;
+        font-size: @font-size-code;
+    }
+
+    .content-group-start {
+        margin-left: -@padding-column;
+        margin-right: -@padding-column;
+        border-radius: @border-radius-small;
+        text-align: center;
+        padding: @padding-column * 2;
+        margin-top: @padding-column * 3;
+        border: 5px solid @color-brand-1;
+        h5 {
+            margin: 0;
+        }
+    }
+
+    .doc-section-title {
+        scroll-margin-top: @header-bottom-height + @compact-title-height + @padding-column * 2;
+        margin-top: @padding-column * 2;
+        // Improved alignment with section content and header content, by taking this margin a bit outside of context.
+        margin-left: -15px;
+        margin-right: -15px;
+
+        h5 {
+            margin: 0;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        * {
+            scroll-margin-top: @header-bottom-height + @compact-title-height + @padding-column * 2;
+        }
+    }
+
+    .doc-section-title:not(.doc-section-sub-title) {
+        border-radius: @border-radius-small;
+        background-color: @color-brand-2;
+        padding: @padding-half-column @padding-column;
+    }
+
+    .doc-section-content {
+        .doc-img-wrap {
+            img {
+                // Documentation images (screenshots etc.)
+                margin-top: @padding-column * 2;
+                margin-bottom: @padding-column * 2;
+
+                border-radius: @border-radius-large;
+            }
+            > a {
+                display: flex;
+            }
+        }
+    }
+}
+
+/*
+*
+*	Plugin carousel
+*
+*/
+
+.carousel-wrap {
+    padding: @padding-column;
+    background-color: @color-brand-2-dark;
+}
+
+.plugin-carousel {
+    margin-top: @padding-column;
+    margin-bottom: @padding-column;
+    // Scroll up to the content intro above the carousel if the carousel is still fully in view.
+    scroll-margin-top: @header-bottom-height + 190px;
+
+    .plugin-carousel-inner {
+        border-radius: @border-radius-large;
+        border: thin solid @color-brand-1-near-white;
+        text-align: left;
+    }
+
+    .carousel-arrows {
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+        gap: @padding-two-third;
+        margin-top: @padding-one-third;
+        padding-top: @padding-two-third;
+        border-top: thin solid @color-brand-1-near-white-a25;
+
+        .carousel-arrow {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            transition: background-color 0.2s;
+            background-color: @color-brand-1;
+            padding: @padding-column @padding-column;
+            border-radius: @border-radius-normal;
+            cursor: pointer;
+    
+            &.carousel-arrow-left {
+                padding-left: 25px;
+                align-items: start;
+                .arrow-icon {
+                    transform: rotateZ(135deg);
+                }
+            }
+            
+            &.carousel-arrow-right {
+                padding-right: 25px;
+                align-items: end;
+                .arrow-icon {
+                    transform: rotateZ(-45deg);
+                }
+            }
+    
+            .carousel-arrow-inner {
+                flex: 1;
+                height: 20px;
+                user-select: none;
+                display: flex;
+        
+                p {
+                    display: inline-block;
+                    margin-top: 0;
+                    margin-bottom: 0;
+                    margin-left: @padding-column;
+                    margin-right: @padding-column;
+                }
+            }
+    
+            &:hover {
+                background-color: @color-brand-1-near-white-a7;
+                cursor: pointer;
+            }
+        }
+    }
+    
+    .carousel-item-container {
+        .carousel-item {
+            display: none;
+        }
+    }
+    
+    .carousel-item-parts {
+        display: flex;
+        padding: @padding-column;
+
+        .carousel-item-part-left {
+            display: flex;
+            flex-direction: column;
+            padding-left: @padding-column;
+            padding-right: @padding-column;
+            flex: 0.5;
+
+            .carousel-item-image-wrap {
+                user-select: none;
+                display: none;
+            }
+        }
+        
+        .carousel-item-part-right {
+            display: flex;
+            flex-direction: column;
+            flex: 0.5;
+        }
+    }
+
+    .carousel-item-image-wrap {
+        user-select: none;
+        margin-bottom: @padding-column;
+        position: relative;
+
+        .carousel-item-image {
+            display: flex;
+            border-radius: @border-radius-large;
+            border: medium solid @color-brand-1;
+        }
+
+        .header-see-in-action {
+            position: absolute;
+            top: 3px;
+            left: 0;
+            right: 0;
+            background-color: @color-black-a7;
+            text-align: center;
+            width: 200px;
+            margin: auto;
+            border-bottom-left-radius: @border-radius-large;
+            border-bottom-right-radius: @border-radius-large;
+            border-bottom: medium solid @color-brand-1;
+    
+            h5 {
+                padding: 0;
+                margin: auto;
+            }
+        }
+    }
+    
+    .carousel-item-links {
+        display: flex;
+        flex-direction: column;
+        gap: @padding-two-third;
+        width: 325px;
+        text-align: center;
+        margin-bottom: @padding-column;
+        margin-top: @padding-column;
+    }
+    
+    .carousel-item-link {
+        border-radius: @border-radius-normal;
+        border: thin solid @color-brand-1-near-white;
+        transition: background-color 0.2s, color 0.2s;
+        padding: @padding-two-third @padding-column;
+        background-color: @color-brand-1;
+        user-select: none;
+        text-decoration: none;
+    }
+
+    .carousel-item-link.carousel-item-link-coming-soon {
+        background-color: @color-brand-2-dark;
+    }
+    
+    .carousel-item-link:not(.carousel-item-link-coming-soon):hover {
+        background-color: @color-brand-1-near-white;
+        color: @color-brand-2-dark;
+        pointer: cursor;
+    }
+    
+    .carousel-item-title h4 {
+        margin: @padding-column;
+        border-bottom: thin solid @color-brand-1-near-white-a7;
+        margin-bottom: 0px;
+        padding-bottom: @padding-column;
+    }
+    
+    .carousel-item-description {
+        display: flex;
+        overflow-y: auto;
+        flex-direction: column;
+        height: 300px;
+        margin-bottom: @padding-column;
+        scrollbar-color: @color-brand-1-near-white @color-brand-2-dark;
+    }
+
+    // Animation for loading / unloading content
+
+    .carousel-item-description {
+        opacity: 0;
+    }
+
+    &.loaded-content {
+        .carousel-item-title {
+            opacity: 1;
+        }
+
+        .carousel-item-description {
+            opacity: 1;
+            transition: opacity 0.2s ease-in;
+        }
+    }
+}
+
+@media screen and (max-height: 930px) {
+    .plugin-carousel {
+        // Avoid scrolling up to the content intro above the carousel if the screen height is already tiny.
+        scroll-margin-top: @header-bottom-height + @padding-column;
+    }
+} 
+
+@media screen and (max-width: @screen-width-xl) {
+    .plugin-carousel {
+        // Avoid scrolling up to the content intro above the carousel if the screen height is already tiny.
+        scroll-margin-top: @header-bottom-height + @padding-column;
+        
+        .max-width-wrap {
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+
+        .carousel-item-parts {
+            flex-direction: column;
+    
+            .carousel-item-part-left {
+                flex: 1;
+                padding-left: 0px;
+                padding-right: 0px;
+
+                .carousel-item-image-wrap {
+                    display: block;
+                    margin-bottom: @padding-column * 4;
+                    .carousel-item-image {
+                        width: 100%;
+                    }
+                }
+            }
+        
+            .carousel-item-part-right {
+                flex: 1;
+
+                .carousel-item-image-wrap {
+                    display: none;
+                }
+            }
+        }
+    
+        .carousel-item-description {
+            height: unset;
+            margin-bottom: @padding-column * 2;
+        }
+    
+        .carousel-item-links {
+            width: auto;
+            margin-top: 0px;
+            margin-bottom: @padding-column * 2;
+        }
+    }
+}
+
+@media screen and (max-width: @screen-width-s) {
+    .plugin-carousel {
+        .carousel-item-parts {
+            .carousel-item-part-left {
+                .carousel-item-image-wrap {
+                    .header-see-in-action {
+                        width: 125px;
+                        h5 {
+                            font-size: 12px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*
+*
+*	animation
+*
+*/
+
+.button,
+button,
+textarea,
+select,
+input {
+    transition: background-color 0.4s, color 0.4s;
+}
+
+// header banner / logo
+
+body.has-banner-content.scroll-past-header-top {
+    #header-logo-wrap {
+        transition: opacity 0.4s ease-in;
+    }
+}
+
+body.js-loaded-app {
+    #banner-logo-wrap {
+        #banner-logo-left,
+        #banner-logo-right {
+            transition: opacity 0.5s ease-in;
+        }
+    }
+}
+
+// header banner
+
+@media screen and (max-width: @screen-width-mobile) {
+    #banner-logo-wrap {
+        #banner-logo-left {
+            width: @header-banner-logo-left-mobile-width;
+            height: @header-banner-logo-left-mobile-height;
+        }
+
+        #banner-logo-right {
+            width: @header-banner-logo-right-mobile-width;
+            height: @header-banner-logo-right-mobile-height;
+        }
+    }
+}
+
+// navigation
+
+#header-nav-menu {
+    .nav-item {
+        transition: border-bottom 0.1s ease-in, background-color 0.1s ease-in;
+    }
+}
+
+// mobile navigation
+
+.generate-mobile-nav-item-transition(@n: 10, @i: 1) when (@i =< @n) {
+    .nav-item:nth-child(@{i}) {
+        transition: border-bottom 0.15s ease-in, transform 0.2s ease (@i/10+0.2s), opacity 0.2s linear (@i/10+0.2s);
+    }
+
+    .generate-mobile-nav-item-transition(@n, (@i + 1));
+}
+
+#mobile-nav-menu {
+    .generate-mobile-nav-item-transition(10, 1);
+}
+
+// Mobile menu icon
+
+#mobile-menu-icon {
+    transition: gap 0.35s ease, height 0.35s ease;
+}
+
+// Mobile navigation menu
+
+@media screen and (max-width: @screen-width-mobile) {
+    #mobile-nav-menu {
+        // When disabling the mobile navigation style visibility gets a delay so that it fades out before disappearing
+        transition: transform 0.3s ease-in, visibility 0s linear 0.3s, border-left 0.25s ease-in;
+    }
+
+    body.mobile-nav #mobile-nav-menu {
+        transition: transform 0.3s ease-in, visibility 0s linear 0s, border-left 0.25s ease-in;
+    }
+}
+
+#navigation-overlay {
+    // When disabling the mobile navigation style visibility gets a delay so that it fades out before disappearing
+    transition: background-color 0.3s ease-in, visibility 0s linear 0.4s;
+}
+
+body.mobile-nav #navigation-overlay {
+    transition: background-color 0.3s ease-in, visibility 0s linear 0s;
+}
+
+// content separator
+
+.content-separator-wrap {
+    .content-separator {
+        transition: background-color 0.25s ease 0.2s;
+
+        .separator-icon {
+            transition: top 0.2s ease-in 0.2s, background-color 0.25s ease 0.2s;
+        }
+    }
+
+    &:hover {
+        .content-separator {
+            transition: background-color 0.25s ease 0s;
+
+            .separator-icon {
+                transition: top 0.2s ease-in 0s, background-color 0.25s ease 0s;
+            }
+        }
+    }
+}
+
+// navigation overlay icon
+
+#navigation-overlay-icon.content-separator-wrap {
+    transition: opacity 0.15s;
+
+    .content-separator {
+        transition: background-color 0.1s ease-in 0.15s;
+
+        .separator-icon {
+            transition: background-color 0.1s ease-in 0.15s, top 0.15s ease 0.15s;
+
+            &:after {
+                transition: background-color 0.1s ease-in 0.15s;
+            }
+        }
+    }
+}
+
+body.mobile-nav #navigation-overlay-icon.content-separator-wrap {
+    transition: opacity 0.15s ease-in 1s;
+
+    .content-separator {
+        transition: background-color 0.2s ease-in 1.15s;
+
+        .separator-icon {
+            transition: background-color 0.2s ease-in 1.15s, top 0.15s ease 0.15s;
+
+            &:after {
+                transition: background-color 0.2s ease-in 1.35s;
+            }
+        }
+    }
+}
+
+// compact
+
+.compact {
+    .compact-option {
+        .compact-title {
+            transition: background-color 0.1s ease-in;
+
+            .compact-title-wrap-2 {
+                .compact-title-wrap {
+                    .arrow-icon {
+                        transition: width 0.3s ease-in, height 0.3s ease-in;
+                    }
+                }
+            }
+        }
+
+        .compact-content {
+            .compact-content-inner {
+                transition: opacity 0.3s;
+            }
+        }
+    }
+
+    .compact-option.active {
+        .compact-title {
+            .compact-title-wrap-2 {
+                .compact-title-wrap {
+                    .arrow-icon {
+                        &:after {
+                            transition: top 1s ease, left 1s ease, background-color 0.2s ease;
+                        }
+                    }
+                }
+            }
+        }
+
+        .compact-content {
+            .compact-content-inner {
+                transition: opacity 0.15s linear 0.55s;
+            }
+        }
+    }
+}
+
+// project-plugin-visual
+
+.scroll-reachable {
+    opacity: 0.1;
+    transition: opacity 1s ease-in;
+}
+
+.scroll-reached {
+    opacity: 1;
+}
+
+.generate-plugin-visual-partnode-anim(@n: 8, @i: 1) when (@i =< @n) {
+    &.scroll-reachable {
+        .part-node-@{i} {
+            transform: translateX(-@padding-column);
+            opacity: 0;
+            transition: transform 0.25s linear @i * 0.1s, opacity 0.25s ease-in @i * 0.1s;
+        }
+    }
+
+    &.scroll-reached {
+        .part-node-@{i} {
+            transform: translateX(0px);
+            opacity: 1;
+        }
+    }
+
+    .generate-plugin-visual-partnode-anim(@n, (@i + 1));
+}
+
+.project-plugin-visual-wrap {
+    .generate-plugin-visual-partnode-anim()
+}
+
+// Scroll margins for specific anchor links
+
+#to-build-something-new {
+    scroll-margin-top: -30px;
+}
+
+
+/*
+*
+*	zindex
+*
+*/
+
+.compact.fixed-title .compact-option .compact-title {
+    z-index: 1;
+}
+
+#navigation-overlay {
+    z-index: 2;
+}
+
+#mobile-nav-menu {
+    z-index: 3;
+}
+
+#header-bottom {
+    z-index: 4;
+}

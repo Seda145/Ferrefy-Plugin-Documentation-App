@@ -1,0 +1,90 @@
+/**[[ Copyright Ferrefy ]]**/
+
+/* Color Branding */
+@color-brand-1-near-white:  #ebe2e5;
+@color-brand-1:             #4b0019;
+@color-brand-2:             #1c214e;
+@color-brand-2-dark:        #03040d;
+
+// whites and blacks, here to avoid using # or rgb in master so that can be scanned for missing vars.
+@color-black: #000;
+@color-transparent: fade(@color-black, 0%);
+
+// Color branding conversion to alpha.
+@color-brand-1-near-white-a25: fade(@color-brand-1-near-white, 25%);
+@color-brand-1-near-white-a7: fade(@color-brand-1-near-white, 70%);
+@color-black-a95: fade(@color-black, 95%);
+@color-black-a7: fade(@color-black, 70%);
+
+// color variables to control groups, not to define anything new.
+@color-default-text: @color-brand-1-near-white;
+@color-footer-copyright: @color-brand-1-near-white-a7;
+@color-navigation-overlay: @color-black-a95;
+
+// Font size
+@font-size-default: 1.2rem;
+@font-size-code: 1.1rem;
+@font-size-mobile-nav: 1.1rem;
+@font-size-footer: 1.15rem;
+@font-size-footer-header: 1.3rem;
+@font-size-footer-copyright: 1rem;
+
+// Scale
+@scale-header: 1.15;
+
+// Line height
+@line-height: 1.618;
+
+// Padding
+@padding-column: 15px;
+@padding-two-third: 10px;
+@padding-half-column: 7px;
+@padding-one-third: 5px;
+
+@max-width-wrap-horizontal-padding: @padding-column * 2;
+@max-width-wrap-horizontal-padding-header-top: 0px;
+@max-width-wrap-horizontal-padding-header-bottom: @padding-column;
+@max-width-wrap-horizontal-padding-footer: @padding-column * 2;
+
+// Width
+@width-max-page-main: 1680px;
+
+// Border radius
+@border-radius-smallest: 2px;
+@border-radius-small: 3px;
+@border-radius-normal: 5px;
+@border-radius-large: 10px;
+
+// header
+@header-bottom-height: 60px;
+@header-bottom-bar-height: 5px;
+// must match image file ratio.
+@header-banner-logo-left-width: 150px;
+@header-banner-logo-left-height: 100px;
+@header-banner-logo-right-width: 330px;
+@header-banner-logo-right-height: 100px;
+@header-banner-logo-left-mobile-width: 75px;
+@header-banner-logo-left-mobile-height: 50px;
+@header-banner-logo-right-mobile-width: 165px;
+@header-banner-logo-right-mobile-height: 50px;
+
+/* mobile nav menu */
+@mobile-nav-menu-inner-width: 130px;
+
+/* content separator */
+@content-separator-hover-translate: -18px;
+
+/* compact */
+@compact-option-min-height: calc(100vh - 110px);
+@compact-content-min-height: calc(100vh - 150px);
+// hardcoded so we can avoid a skip in content position when the compact title becomes fixed.
+@compact-title-height: 75px;
+
+/* Media rules */
+@screen-width-s: 500px;
+@screen-width-m: 768px;
+@screen-width-l: 1024px;
+@screen-width-xl: 1366px;
+@screen-width-less-than-main: @width-max-page-main - 1px;
+// Keep screen-width-mobile in sync with js:
+@screen-width-mobile: 1024px;

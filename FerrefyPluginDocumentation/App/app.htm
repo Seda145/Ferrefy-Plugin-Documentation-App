@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="x-ua-compatible" content="ie=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- Title injected dynamically through content provider. -->
+		<title></title>
+		<link href="./css/master.css" rel="stylesheet" />
+	</head>
+
+	<body id="start">
+		<!-- Content injected dynamically. -->
+		<header data-component="header"></header>
+		<main></main>
+		<footer data-component="footer"></footer>
+
+		<script src="./js/app-builder.js">// Builder: This program holds app constants / config, and builds final html files for public use, made from the javascript components.</script>
+		<script src="./js/builder-utils.js">// Builder component: App utilities</script>
+
+		<script src="./js/header-builder.js">// Builder component: Header</script>
+		<script src="./js/footer-builder.js">// Builder component: Footer</script>
+		
+		<script src="./js/dependencies-builder.js">// Content component</script>
+		<script src="./js/plugin-info-builder.js">// Content component</script>
+		<script src="./js/compact-summary-builder.js">// Content component</script>
+		<script src="./js/compact-content-section-builder.js">// Content component</script>
+		<script src="./js/compact-option-builder.js">// Content component</script>
+		<script src="./js/compact-builder.js">// Content component</script>
+		<script src="./js/plugin-carousel-builder.js">// Content component</script>
+
+		<script src="./js/content/index-content.js">// Content</script>
+		<script src="./js/content/documentation-options/documentation-option-assetnaming.js">// Content</script>
+		<script src="./js/content/documentation-options/documentation-option-centralui.js">// Content</script>
+		<script src="./js/content/documentation-options/documentation-option-customsettings.js">// Content</script>
+		<script src="./js/content/documentation-options/documentation-option-general.js">// Content</script>
+		<script src="./js/content/documentation-options/documentation-option-eventmanager.js">// Content</script>
+		<script src="./js/content/documentation-options/documentation-option-introductionandusage.js">// Content</script>
+		<script src="./js/content/documentation-options/documentation-option-statuseffects.js">// Content</script>
+		<script src="./js/content/documentation-options/documentation-option-time.js">// Content</script>
+		<script src="./js/content/documentation-options/documentation-option-uiadditions.js">// Content</script>
+		<script src="./js/content/documentation-options/documentation-option-utility.js">// Content</script>
+		<script src="./js/content/documentation-options/documentation-options-overview.js">// Content</script>
+		<script src="./js/content/documentation-content.js">// Content</script>
+
+		<script src="./js/navigation-builder.js">// Post content injection: navigation</script>
+
+		<script>
+			// App builder injects content by its configuration.
+			appBuilder.injectContent();
+		</script>
+
+		<script src="./js/separator-builder.js">// Post content injection: separators</script>
+
+		<!-- Script for public user interface. Must not affect build process. -->
+		<script src="./js/master.js"></script>
+	</body>
+</html>
