@@ -2,9 +2,8 @@
 
 # Ferrefy: Plugin Documentation
 
-//////////////////////////////////////////////////////////////////////////// Banner here
-//////////////////////////////////////////////////////////////////////////// Banner here
-//////////////////////////////////////////////////////////////////////////// Banner here
+<img width="1920" height="540" alt="Ferrefy_Banner" src="https://github.com/user-attachments/assets/8622a557-b1b9-4773-af40-dd2e14f90797" />
+
 
 ---
 ## About this app
@@ -40,9 +39,18 @@ The name 'Ferrefy', the Ferrefy logo, and associated branding are protected and 
 ### Media
 ---
 
-//////////////////////////////////////////////////////////////////////////// Media here
-//////////////////////////////////////////////////////////////////////////// Media here
-//////////////////////////////////////////////////////////////////////////// Media here
+<img width="1920" height="945" alt="MediaGallery_FerrefyPluginDocumentationApp_1" src="https://github.com/user-attachments/assets/8e6246af-d122-4ecd-9523-22efc13d1795" />
+
+<img width="1920" height="945" alt="MediaGallery_FerrefyPluginDocumentationApp_2" src="https://github.com/user-attachments/assets/6863d7f9-21ac-41eb-aef9-11724c1484f5" />
+
+<img width="469" height="944" alt="MediaGallery_FerrefyPluginDocumentationApp_3" src="https://github.com/user-attachments/assets/7f6f36cf-34fc-494c-857b-6683e30e51d8" />
+
+<img width="1920" height="945" alt="MediaGallery_FerrefyPluginDocumentationApp_4" src="https://github.com/user-attachments/assets/3aa65e17-1c73-4951-bcc1-59ef51112958" />
+
+<img width="1914" height="944" alt="MediaGallery_FerrefyPluginDocumentationApp_5" src="https://github.com/user-attachments/assets/60e719ed-0d2d-4250-8261-454dfbc4b4dd" />
+
+<img width="1917" height="945" alt="MediaGallery_FerrefyPluginDocumentationApp_6" src="https://github.com/user-attachments/assets/36b0d9b0-4a4c-4d1d-a5c6-6c9f20be805c" />
+
 
 ---
 ### Find Ferrefy plugins
